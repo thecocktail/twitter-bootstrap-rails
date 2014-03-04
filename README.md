@@ -1,7 +1,7 @@
-# Twitter Bootstrap for Rails 3.1 Asset Pipeline
-Bootstrap is a toolkit from Twitter designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
+# Bootstrap for Rails Asset Pipeline
+Bootstrap is a toolkit designed to kickstart development of webapps and sites. It includes base CSS and HTML for typography, forms, buttons, tables, grids, navigation, and more.
 
-twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 Asset Pipeline (Rails 3.2 supported)
+twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails Asset Pipeline (Rails 3.1, 3.2 and 4.0 supported)
 
 [![Gem Version](https://badge.fury.io/rb/twitter-bootstrap-rails.png)][gem]
 [![Build Status](https://secure.travis-ci.org/seyhunak/twitter-bootstrap-rails.png?branch=master)][travis]
@@ -22,10 +22,10 @@ twitter-bootstrap-rails project integrates Bootstrap CSS toolkit for Rails 3.1 A
 Screencasts provided by <a href="http://railscasts.com">Railscasts</a> (Ryan Bates)
 
 [Twitter Bootstrap Basics](http://railscasts.com/episodes/328-twitter-bootstrap-basics "Twitter Bootstrap Basics")
-in this episode you will learn how to include Twitter Bootstrap into Rails application with the twitter-bootstrap-rails gem.
+in this episode you will learn how to include Bootstrap into Rails application with the twitter-bootstrap-rails gem.
 
 [More on Twitter Bootstrap](http://railscasts.com/episodes/329-more-on-twitter-bootstrap "More on Twitter Bootstrap")
-in this episode continues on the Twitter Bootstrap project showing how to display flash messages, add form validations with SimpleForm, customize layout with variables, and switch to using Sass.
+in this episode continues on the Bootstrap project showing how to display flash messages, add form validations with SimpleForm, customize layout with variables, and switch to using Sass.
 (Note: This episode is pro episode)
 
 
@@ -35,9 +35,9 @@ An example application is available at [toadkicker/teststrap](https://github.com
 
 ## Installing the Gem
 
-The [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) can provide the Twitter Bootstrap stylesheets in two ways.
+The [Twitter Bootstrap Rails gem](http://rubygems.org/gems/twitter-bootstrap-rails) can provide the Bootstrap stylesheets in two ways.
 
-The plain CSS way is how Twitter Bootstrap is provided on [the official website](http://twitter.github.com/bootstrap/).
+The plain CSS way is how Bootstrap is provided on [the official website](http://twbs.github.io/bootstrap/).
 
 The [Less](http://lesscss.org/) way provides more customisation options, like changing theme colors, and provides useful Less mixins for your code, but requires the
 Less gem and the Ruby Racer Javascript runtime (not available on Microsoft Windows).
@@ -82,10 +82,10 @@ After running `bundle install`, run the generator:
 
 ## Generating layouts and views
 
-You can run following generators to get started with Twitter Bootstrap quickly.
+You can run following generators to get started with Bootstrap quickly.
 
 
-Layout (generates Twitter Bootstrap compatible layout) - (Haml and Slim supported)
+Layout (generates Bootstrap compatible layout) - (Haml and Slim supported)
 
 
 Usage:
@@ -106,7 +106,7 @@ Example of a responsive layout:
     rails g bootstrap:layout application fluid
 
 
-Themed (generates Twitter Bootstrap compatible scaffold views.) - (Haml and Slim supported)
+Themed (generates Bootstrap compatible scaffold views.) - (Haml and Slim supported)
 
 
 Usage:
@@ -256,7 +256,7 @@ If you want to customize what is loaded, your application.js would look somethin
 
 ## Using Coffeescript (optionally)
 
-Using Twitter Bootstrap with the CoffeeScript is easy.
+Using Bootstrap with the CoffeeScript is easy.
 twitter-bootstrap-rails generates a "bootstrap.js.coffee" file for you
 to /app/assets/javascripts/ folder.
 
@@ -555,14 +555,15 @@ Add flash helper `<%= bootstrap_flash %>` to your layout (built-in with layout g
 
 ### Breadcrumbs Helpers
 
-*Notice* If your application is using [breadcrumbs-on-rails](https://github.com/weppos/breadcrumbs_on_rails) you will have a namespace collision with the add_breadcrumb method. 
-You do not need to use these breadcrumb gems since this gem provides the same functionality out of the box without the additional dependency. 
+*Notice* If your application is using [breadcrumbs-on-rails](https://github.com/weppos/breadcrumbs_on_rails) you will have a namespace collision with the add_breadcrumb method.
+You do not need to use these breadcrumb gems since this gem provides the same functionality out of the box without the additional dependency.
 
 Add breadcrumbs helper `<%= render_breadcrumbs %>` to your layout.
+You can also specify a divider for it like this: `<%= render_breadcrumbs('>') %>` (default divider is `/`).
 
 ```ruby
 class ApplicationController
-  add_breadcrumb :index, :root_path
+  add_breadcrumb :root # 'root_path' will be used as url
 end
 ```
 
@@ -570,16 +571,15 @@ end
 class ExamplesController < ApplicationController
   add_breadcrumb :index, :examples_path
 
-  def index
-  end
-
-  def show
+  def edit
     @example = Example.find params[:id]
-    add_breadcrumb @example.name, example_path(@example)
-    # add_breadcrumb :show, example_path(@example)
+    add_breadcrumb @example # @example.to_s as name, example_path(@example) as url
+    add_breadcrumb :edit, edit_example_path(@example)
   end
 end
 ```
+All symbolic names translated with I18n. See [I18n Internatiolization Support](#i18n-internationalization-support)
+section.
 
 ### Element utility helpers
 
@@ -598,7 +598,7 @@ Glyph:
 <%= glyph(:pencil) %> <i class="icon-pencil"></i>
 ```
 
-###i18n Internationalization Support
+###I18n Internationalization Support
 The installer creates an english translation file for you and copies it to config/locales/en.bootstrap.yml
 
 
@@ -657,7 +657,7 @@ for handling flash messages, even if those messages are blank. See https://githu
   <li>Released gem v.2.2.5 (Bootstrap 2.3.1)</li>
   <li>Released gem v.2.2.6</li>
   <li>Released gem v.2.2.7 (Fixes)</li>
-
+  <li>Releases gem v.2.2.8</li>
 </ul>
 
 
@@ -719,8 +719,8 @@ http://klout.com/#/seyhunak
 
 
 ## Thanks
-Twitter Bootstrap and all twitter-bootstrap-rails contributors
-http://twitter.github.com/bootstrap
+Bootstrap and all twitter-bootstrap-rails contributors
+http://twbs.github.io/bootstrap
 
 
 ## License
