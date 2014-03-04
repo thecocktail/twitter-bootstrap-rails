@@ -73,7 +73,7 @@ module NavbarHelper
   #   # Assume we'r currently at blog/categories/test
   #   uri_state('/blog/categories/test')   # :active
   #   uri_state('/blog/categories')        # :chosen
-  #   uri_state('/blog/categories/test/3') # :inactive    
+  #   uri_state('/blog/categories/test/3') # :inactive
   def uri_state(uri)
     root_url = request.host_with_port + '/'
     root = uri == '/' || uri == root_url
@@ -93,7 +93,7 @@ module NavbarHelper
         :inactive
       end
     end
-  end  
+  end
 
   private
 
@@ -159,7 +159,7 @@ module NavbarHelper
   end
 
   def is_active?(path)
-    "active" if uri_state(path).in?(:active, :chosen)
+    "active" if uri_state(path).in?([:active, :chosen])
   end
 
   def name_and_caret(name)
